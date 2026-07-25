@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新标签页</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <main class="page">
+      <h1 id="clock">00:00</h1>
+      <p id="date-label">月日星期日</p>
+      <div class="search-panel">
+        <div class="search-box">
+          <button type="button" class="search-icon" aria-label="选择搜索引擎">
+            <svg class="search-icon-svg" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></circle>
+            </svg>
+          </button>
+          <input
+            class="search-input"
+            type="text"
+            placeholder="使用搜索引擎搜索"
+            aria-label="搜索"
+          />
+          <div class="search-dropdown" hidden>
+            <button type="button" class="search-option" data-base="https://cn.bing.com/search?q=" data-name="Bing">Bing</button>
+            <button type="button" class="search-option" data-base="https://www.google.com/search?q=" data-name="Google">Google</button>
+            <button type="button" class="search-option" data-base="https://search.bilibili.com/all?keyword=" data-name="Bilibili">Bilibili</button>
+            <button type="button" class="search-option" data-base="https://www.xiaoheihe.cn/app/search/list?q=" data-name="小黑盒">小黑盒</button>
+            <button type="button" class="search-option" data-base="https://zh.minecraft.wiki/w/" data-name="minecraft wiki">minecraft wiki</button>
+          </div>
+        </div>
+      </div>
+      <h2 class="spacer-title" aria-hidden="true">&nbsp;</h2>
+      <!-- 修改/添加按钮图片方法：
+           1. 找到 <img ... /> 这行。
+           2. 把 src="..." 改成你想要的图片 URL。
+           3. 如果要新增按钮，复制一个 <a class="nav-card">...</a> 代码块即可。
+      -->
+      <div class="section-block">
+        <h2 style="color:#ffffff">常用站点</h2>
+      </div>
+      <!-- 扩展方法：
+           1. 想加一个新分区，在这里复制一段 <div class="section-block">...</div>。
+           2. 把 <h2>里的文字改成你的分区名，例如“工具站点”或“学习资源”。
+           3. 在它下面继续添加新的 <a class="nav-card">...</a> 按钮。
+           4. 这样每个分区都会独立显示标题，并且按钮会自动换行排列。
+      -->
+      <div class="nav-list">
+        <a class="nav-card" href="https://www.google.com" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/23/pmgfiOs.jpg" alt="Google logo" style="transform: scale(1);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">Google</span>
+            <span class="url">@google.com</span>
+          </div>
+        </a>
+        
+        <a class="nav-card" href="https://www.bing.com" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/23/pmgfkmn.webp" alt="Bing logo" style="transform: scale(0.7);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">Bing</span>
+            <span class="url">@bing.com</span>
+          </div>
+        </a>
+        <a class="nav-card" href="https://www.bilibili.com" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/23/pmgfKl4.webp" alt="Bilibili logo" style="transform: scale(0.7);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">Bilibili</span>
+            <span class="url">@bilibili.com</span>
+          </div>
+        </a>
+        <a class="nav-card" href="https://www.xiaoheihe.cn/app/bbs/home" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/23/pmg4PZn.png" alt="小黑盒 logo" style="transform: scale(0.7);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">小黑盒</span>
+            <span class="url">@xiaoheihe.cn</span>
+          </div>
+        </a>
+      </div>
+      <div class="section-block">
+        <h2 style="color:#ffffff">人工智能</h2>
+      </div>
+      <div class="nav-list">
+        <a class="nav-card" href="https://chat.deepseek.com/" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/23/pmgftfO.png" alt="DeepSeek logo" style="transform: scale(0.7);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">DeepSeek</span>
+            <span class="url">@deepseek.com</span>
+          </div>
+        </a>
+         <a class="nav-card" href="https://www.doubao.com" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/24/pm2p0JS.webp" alt="豆包 logo" style="transform: scale(1);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">豆包</span>
+            <span class="url">@doubao.com</span>
+          </div>
+        </a>
+        <a class="nav-card" href="https://www.qianwen.com/" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzY5MzJfNjEpIj4KPHBhdGggZD0iTTMyLjU4MjggMTQuMDU3OUgyNi4xODQxQzI2LjE4NDEgMTMuNzg1OCAyNi4xMTQgMTMuNTEzNyAyNS45NzI1IDEzLjI3MDZMMjUuMTE2MiAxMS43ODY3QzI0LjgzNDUgMTEuMjk5MyAyNC4zMTQ0IDEwLjk5OTQgMjMuNzUyMSAxMC45OTk0SDIyLjAzOTZDMjEuNDc3MyAxMC45OTk0IDIwLjk1NjEgMTEuMjk5MyAyMC42NzU1IDExLjc4NjdMMTguMDUzNiAxNi4zMjlDMTcuNzcxOCAxNi44MTY0IDE3Ljc3MTggMTcuNDE3NSAxOC4wNTM2IDE3LjkwNDhMMTguOTA5OCAxOS4zODg3QzE5LjE5MTYgMTkuODc2MSAxOS43MTE2IDIwLjE3NiAyMC4yNzQgMjAuMTc2SDMyLjU4MjhDMzMuMTQ1MiAyMC4xNzYgMzMuNjY2NCAxOS44NzYxIDMzLjk0NyAxOS4zODg3TDM0LjgwMzIgMTcuOTA0OEMzNS4wODUgMTcuNDE3NSAzNS4wODUgMTYuODE2NCAzNC44MDMyIDE2LjMyOUwzMy45NDcgMTQuODQ1MkMzMy42NjUyIDE0LjM1NzggMzMuMTQ1MiAxNC4wNTc5IDMyLjU4MjggMTQuMDU3OVoiIGZpbGw9IiMwODJERkYiLz4KPHBhdGggZD0iTTExLjQzMTEgMjEuNzI4OEwxNC42Mjk5IDI3LjI3MDFDMTQuMzk0MSAyNy40MDU2IDE0LjE5NDUgMjcuNjAyNyAxNC4wNTMgMjcuODQ3TDEzLjE5NjggMjkuMzMwOUMxMi45MTUgMjkuODE4MiAxMi45MTUgMzAuNDE5MyAxMy4xOTY4IDMwLjkwNjZMMTQuMDUzIDMyLjM5MDVDMTQuMzM0OCAzMi44Nzc5IDE0Ljg1NDggMzMuMTc3OCAxNS40MTcyIDMzLjE3NzhIMjAuNjYyMkMyMS4yMjQ1IDMzLjE3NzggMjEuNzQ1NyAzMi44Nzc5IDIyLjAyNjMgMzIuMzkwNUwyMi44ODI1IDMwLjkwNjZDMjMuMTY0MyAzMC40MTkzIDIzLjE2NDMgMjkuODE4MiAyMi44ODI1IDI5LjMzMDlMMTYuNzI4MSAxOC42NjkyQzE2LjQ0NjMgMTguMTgxOCAxNS45MjYzIDE3Ljg4MTkgMTUuMzY0IDE3Ljg4MTlIMTMuNjUxNUMxMy4wODkyIDE3Ljg4MTkgMTIuNTY3OSAxOC4xODE4IDEyLjI4NzMgMTguNjY5MkwxMS40MzExIDIwLjE1M0MxMS4xNDkzIDIwLjY0MDQgMTEuMTQ5MyAyMS4yNDE1IDExLjQzMTEgMjEuNzI4OFoiIGZpbGw9IiMwODJERkYiLz4KPHBhdGggZD0iTTI4LjY1IDM2LjIxMjFMMzEuODQ4NyAzMC42NzA4QzMyLjA4NDYgMzAuODA2MyAzMi4zNTU1IDMwLjg4MjUgMzIuNjM2IDMwLjg4MjVIMzQuMzQ4NUMzNC45MTA4IDMwLjg4MjUgMzUuNDMyMSAzMC41ODI1IDM1LjcxMjYgMzAuMDk1MkwzNi41Njg5IDI4LjYxMTNDMzYuODUwNiAyOC4xMjM5IDM2Ljg1MDYgMjcuNTIyOSAzNi41Njg5IDI3LjAzNTVMMzMuOTQ3IDIyLjQ5MzFDMzMuNjY1MiAyMi4wMDU4IDMzLjE0NTIgMjEuNzA1OCAzMi41ODI4IDIxLjcwNThIMzAuODcwNEMzMC4zMDggMjEuNzA1OCAyOS43ODY4IDIyLjAwNTggMjkuNTA2MiAyMi40OTMxTDIzLjM1MTggMzMuMTUzNkMyMy4wNyAzMy42NDEgMjMuMDcgMzQuMjQyMSAyMy4zNTE4IDM0LjcyOTRMMjQuMjA4IDM2LjIxMzNDMjQuNDg5OCAzNi43MDA3IDI1LjAwOTggMzcuMDAwNiAyNS41NzIyIDM3LjAwMDZIMjcuMjg0NkMyNy44NDcgMzcuMDAwNiAyOC4zNjgyIDM2LjcwMDcgMjguNjQ4OCAzNi4yMTMzTDI4LjY1IDM2LjIxMjFaIiBmaWxsPSIjMDgyREZGIi8+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfNjkzMl82MSI+CjxyZWN0IHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgZmlsbD0id2hpdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExIDExKSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=" alt="千问 logo" style="transform: scale(1);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">千问</span>
+            <span class="url">@qianwen.com</span>
+          </div>
+        </a>
+        <a class="nav-card" href="https://yuanbao.tencent.com/" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/24/pm2CJEt.jpg" alt="元宝 logo" style="transform: scale(1.1);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">元宝</span>
+            <span class="url">@tencent.com</span>
+          </div>
+        </a>
+         <a class="nav-card" href="https://claude.ai/" target="_self" rel="noopener noreferrer">
+          <div class="logo-wrap">
+            <img src="https://s41.ax1x.com/2026/07/24/pm2C5r9.webp" alt="claude logo" style="transform: scale(1.1);" />
+          </div>
+          <div class="text-wrap">
+            <span class="title">claude</span>
+            <span class="url">@claude.com</span>
+          </div>
+        </a>
+      </div>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

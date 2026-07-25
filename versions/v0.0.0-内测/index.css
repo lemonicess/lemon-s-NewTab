@@ -1,0 +1,409 @@
+/*
+  Spacing controls (修改这些值来调整页面留白)：
+
+  1) 顶部留白（page 顶部）
+    Selector: .page { padding-top: 48px; }
+    说明: 控制页面顶部与时钟之间的空白，值为 px。
+
+  2) 时钟与日期间距（clock & date）
+    Selector: h1 { margin-bottom: 2px; }
+    Selector: #date-label { margin-top: 2px; margin-bottom: 20px; }
+    说明: h1 的下外边距控制时钟与日期的间距，#date-label 的下外边距控制日期与搜索栏的间距。
+
+  3) 搜索栏与超链接卡片间距（search & nav）
+    Selector: .stripe-2 .search-panel { margin-bottom: 24px; }
+    Selector: .stripe-3 .nav-list { margin-top: 24px; }
+    说明: 修改这两个值可以控制搜索与卡片之间的总空隙（两者之和为最终间距）。
+
+  注意：所有数值均为像素(px)。在不同屏幕宽度下，可以适当调整这些值以获得更好视觉效果。
+*/
+:root {
+  --page-bg: #f3f4f6;
+  --card-bg: #ffffff;
+  --text: #111827;
+  --muted: #9b9b9b;
+  --border: #e5e7eb;
+  --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --dropdown-opacity: 0.25; /* 下拉菜单不透明度：0（全透明）- 1（不透明） */
+  --radius: 18px;
+  --spacer-gap: 175px; /* 空白占位符的底部间距，可自定义 */
+  /* 毛玻璃参数（在这里调整透明度和模糊）：
+     - --frost-opacity: 0.0 - 1.0 （例如 0.10 表示 10% 不透明）
+     - --frost-blur: 像素值，例如 6px、10px、16px
+     修改这些变量后保存并刷新页面即可看到变化。
+  */
+  --frost-opacity: 0.05;
+  --frost-blur: 8px;
+    /* 搜索框专用毛玻璃变量：
+      - --search-frost-opacity: 范围 0.0 - 1.0，示例 0.14
+      - --search-frost-blur: 像素值，示例 8px
+      - --search-border: 搜索框边框颜色，示例 rgba(255,255,255,0.28)
+      修改这些变量可以单独控制搜索框的毛玻璃外观。
+    */
+    --search-frost-opacity: 0.14;
+    --search-frost-blur: 8px;
+    --search-border: rgba(255,255,255,0.28);
+    /* 搜索图标位置已固定为右移 40px、上移 12px（如需调整我来改） */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+  margin: 0;
+  overflow: auto; /* 允许页面整体滚动 */
+  scrollbar-width: none; /* Firefox 隐藏滚动条 */
+  -ms-overflow-style: none; /* IE/Edge 旧版隐藏滚动条 */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari 隐藏滚动条 */
+}
+
+body {
+  min-height: 100%;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: url("https://pic.feria.eu.org/yF0pv2b1/Gfhey1-Tb-MAMsfs-J.jpg") center/cover fixed no-repeat;
+  position: relative;
+}
+
+.page {
+  width: min(100%, 760px);
+  text-align: center;
+  margin: 0 auto;
+  min-height: 100vh; /* 主容器至少等于视口高度 */
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* 允许容器溢出并滚动 */
+  position: relative;
+  z-index: 1; /* 置于毛玻璃覆盖层之上 */
+}
+
+/* 毛玻璃覆盖层：覆盖背景图片但不阻挡交互 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* 使用变量控制透明度与模糊，修改 --frost-opacity 和 --frost-blur */
+  background: rgba(255, 255, 255, var(--frost-opacity));
+  backdrop-filter: blur(var(--frost-blur));
+  -webkit-backdrop-filter: blur(var(--frost-blur));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 留出一点顶部空白，让内容不要紧贴窗口顶部 */
+.page {
+  padding-top: 150px;
+}
+
+/* Three equal horizontal bands */
+.stripe {
+  flex: 1; /* 平均分配高度，严格等分 */
+  min-height: 0; /* 允许内部滚动容器生效 */
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.stripe-1 {
+  background: rgba(255,255,255,0.03);
+}
+.stripe-2 {
+  background: rgba(255,255,255,0.06);
+}
+.stripe-3 {
+  background: rgba(255,255,255,0.03);
+}
+
+.stripe-inner {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+/* First band: clock/date at bottom */
+.stripe-1 .stripe-inner {
+  align-items: flex-end; /* place content at bottom of band */
+  justify-content: center; /* center horizontally */
+  padding-bottom: 28px;
+}
+
+/* Second band: search centered */
+.stripe-2 .stripe-inner {
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+/* Third band: nav list scrollable */
+.stripe-3 .stripe-inner {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px 24px;
+  overflow: hidden;
+}
+
+.stripe-3 .stripe-inner > .nav-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Make sure nav-list items flow and have reasonable gaps */
+.nav-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+h1 {
+  margin: 0 0 2px;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* Clock and date styling */
+#clock,
+#date-label {
+  color: #ffffff;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+}
+
+#date-label {
+  margin-top: 2px;
+  margin-bottom: 100px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+p {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+.search-panel {
+  margin: 16px auto 20px;
+  width: min(100%, 680px);
+  padding: 0 12px;
+}
+
+/* 隐形占位标题：用于在搜索栏下制造可配置留白，不影响可访问文字 */
+.spacer-title {
+  margin: 0 0 var(--spacer-gap);
+  font-size: 1rem;
+  line-height: 1;
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 增加搜索栏与下方超链接卡片的间距 */
+.stripe-2 .search-panel {
+  margin-bottom: 100px; /* 控制搜索栏底部空白 */
+}
+
+.stripe-3 .nav-list {
+  margin-top: 100px; /* 控制卡片与搜索栏的顶部空白 */
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 13px; /* 固定右移：13px */
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateY(calc(-50% - 3px)); /* 上移 3px */
+  border: none;
+  background: none; /* 使用内联 SVG，移除背景图 */
+  color: #ffffff; /* 图标颜色：白色以在毛玻璃上可见 */
+  cursor: pointer;
+  z-index: 3; /* 置于输入框之上，保证可见并可点击 */
+  pointer-events: auto;
+}
+
+.search-icon-svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.search-input {
+  color: #ffffff; /* 将搜索框文字设为白色 */
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px 0 46px;
+  border: 1px solid var(--search-border);
+  border-radius: 999px;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(255,255,255,var(--search-frost-opacity));
+  backdrop-filter: blur(var(--search-frost-blur));
+  -webkit-backdrop-filter: blur(var(--search-frost-blur));
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  position: relative; /* 创建堆叠上下文以支持 z-index */
+  z-index: 1;
+}
+
+.search-input::placeholder {
+  color: #ffffff; /* 将搜索框提示文字设为白色 */
+  opacity: 1; /* 保持各浏览器一致性 */
+}
+
+.search-dropdown {
+  /* 背景使用可自定义的不透明度变量 --dropdown-opacity */
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  display: none;
+  background: rgba(255, 255, 255, var(--dropdown-opacity, 0.72));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+  z-index: 10;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 180px;
+}
+
+.search-dropdown.open {
+  display: inline-block;
+}
+
+.search-option {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: 100%;
+  padding: 12px 16px;
+  gap: 10px;
+  text-align: left;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.search-option-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transform: scale(var(--icon-scale, 1));
+}
+
+.search-option:hover {
+  background: #f3f4f6;
+}
+
+.search-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+}
+
+.section-block {
+  margin: 8px 0 10px;
+  text-align: left;
+}
+
+.section-block h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.nav-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  justify-content: start;
+  gap: 12px;
+}
+
+.nav-card {
+  display: grid;
+  grid-template-columns: minmax(48px, 1fr) minmax(0, 1.5fr);
+  align-items: center;
+  width: 180px;
+  min-height: 64px;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.12);
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(var(--img-scale, 1));
+  transform-origin: center center;
+}
+
+.text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding-left: 10px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.url {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* 修改方法：
+   - 改左侧图片：把 HTML 里的 index.jpeg 换成你自己的图片文件名。
+   - 改标题和网址：改 .title 和 .url 里的文字内容。
+   - 改左右比例：把 .nav-card 的 grid-template-columns 里的 1fr 和 1.5fr 调整。
+   - 改按钮圆角：把 --radius 的值改成 12px、16px 或 24px。
+*/
+}

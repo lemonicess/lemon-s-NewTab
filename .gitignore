@@ -1,0 +1,28 @@
+# ---- 打包产物（可由源码重新打包，不入库）----
+*.crx
+*.pem
+*.zip
+*.xpi
+*.tar.gz
+
+# ---- 本地背景图缓存 / 用户私有配置 ----
+# 设置面板导出的配置与密钥类文件一律不入库
+secrets.json
+config.export.json
+*.local.json
+.env
+.env.*
+
+# ---- 系统与编辑器 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.log
+
+# ---- 依赖（本项目为纯静态，暂无构建步骤）----
+node_modules/
