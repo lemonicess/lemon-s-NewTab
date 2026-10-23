@@ -1,0 +1,118 @@
+/* ============================================
+   lemon's NewTab 自定义 CSS 演示
+   使用方法：设置面板 → 高级 → 自定义 CSS → 粘贴 → 应用并保存
+   每段都可独立使用，删掉不想要的注释块即可
+   ============================================ */
+
+/* ---------- 1. 彩虹渐变时钟 ---------- */
+#clock {
+  background: linear-gradient(90deg, #ff6b6b, #f7b731, #5f27cd, #54a0ff, #ff6b6b);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lemon-rainbow 8s linear infinite;
+  letter-spacing: 4px;
+}
+
+@keyframes lemon-rainbow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* 日期标签加一点字距，更优雅 */
+#date-label {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ---------- 2. 搜索框：更强的毛玻璃 + 聚焦霓虹光晕 ---------- */
+.search-panel {
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 32px rgba(138, 43, 226, 0.25);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.search-panel:focus-within {
+  box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.35),
+              0 12px 40px rgba(138, 43, 226, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ---------- 3. 卡片：玻璃拟态 + 悬停悬浮动画 ---------- */
+.nav-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease;
+}
+
+.nav-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 18px 36px rgba(95, 39, 205, 0.28);
+}
+
+/* 玻璃卡上的文字加深，保证可读性 */
+.nav-card .title {
+  color: #1f2937;
+}
+
+.nav-card .url {
+  color: rgba(31, 41, 55, 0.55);
+}
+
+/* 悬停时图标轻微旋转 */
+.nav-card:hover .logo-wrap {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.logo-wrap {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- 4. 分组标题：渐变下划线 ---------- */
+.section-block h2 {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 6px;
+  letter-spacing: 2px;
+}
+
+.section-block h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #f7b731, #54a0ff);
+}
+
+/* ---------- 5. 布局微调：卡片更大更圆 ---------- */
+:root {
+  --card-width: 200px;
+  --card-radius: 24px;
+  --search-height: 54px;
+}
+
+/* ---------- 6. 背景氛围：加重模糊与压暗 ---------- */
+:root {
+  --bg-frost-blur: 14px;
+}
+
+body::before {
+  filter: blur(var(--bg-frost-blur)) brightness(0.85) saturate(1.2);
+}
+
+/* ---------- 7. 设置按钮：悬停旋转 ---------- */
+.settings-trigger {
+  transition: transform 0.4s ease;
+}
+
+.settings-trigger:hover {
+  transform: rotate(90deg);
+}
