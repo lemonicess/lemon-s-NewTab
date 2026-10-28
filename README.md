@@ -11,4 +11,9 @@
 2. 点击「加载已解压的扩展程序」；
 3. 选择 `versions/v0.7.0/`（或任意历史版本）目录；
 4. 新建标签页即可看到效果。
+---
 
+Image: Pumpkin Apple Fall
+Source: https://pixabay.com/photos/pumpkin-8384698/
+License: Pixabay Content License
+License page: https://pixabay.com/service/license-summary/
