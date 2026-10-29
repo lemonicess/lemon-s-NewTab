@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "lemon's NewTab",
+  "description": "一个简洁、可自定义的新标签页，支持导航、主题、背景与 Bing 每日壁纸。",
+  "version": "0.9.0",
+  "permissions": ["storage", "unlimitedStorage"],
+  "optional_host_permissions": ["https://www.bing.com/"],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
