@@ -1,3 +1,4 @@
+[English](README_en.md) | [简体中文](README.md) | [繁體中文](README_zh-TW.md) | [日本語](README_ja.md) | [한국어](README_ko.md) | [Русский](README_ru.md) | [Español](README_es.md) | [العربية](README_ar.md)
 # lemon's NewTab
 
 一个纯静态的 Chrome 新标签页扩展：时钟 + 搜索框 + 导航卡片 + 可滑出的设置面板，
